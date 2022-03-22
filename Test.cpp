@@ -29,20 +29,6 @@ TEST_CASE("Good input") {
     CHECK(notebook1.read(/*page=*/12, /*row=*/2, /*column=*/10, Direction::Vertical, 5) == "_____");    
 }
 
-// TEST_CASE("Bad input - Negative input") {
-//     ariel:: Notebook notebook2;
-//     CHECK_THROWS(notebook2.write(/*page=*/-100, /*row=*/100, /*column=*/50, Direction::Vertical, "abcd"));
-//     CHECK_THROWS(notebook2.write(/*page=*/50, /*row=*/-8, /*column=*/50, Direction::Horizontal, "abcd"));
-//     CHECK_THROWS(notebook2.write(/*page=*/-100, /*row=*/-8, /*column=*/50, Direction::Horizontal, "abcd"));
-//     CHECK_THROWS(notebook2.write(/*page=*/-100, /*row=*/100, /*column=*/-50, Direction::Vertical, "abcd"));
-//     CHECK_THROWS(notebook2.read(/*page=*/-3, /*row=*/3, /*column=*/0, Direction::Horizontal, /*length=*/4));
-//     CHECK_THROWS(notebook2.read(/*page=*/220, /*row=*/-33, /*column=*/99, Direction::Horizontal, /*length=*/3));
-//     CHECK_THROWS(notebook2.read(/*page=*/55, /*row=*/55, /*column=*/-222, Direction::Horizontal, /*length=*/112));
-//     CHECK_THROWS(notebook2.read(/*page=*/0, /*row=*/3, /*column=*/0, Direction::Vertical, /*length=*/-4));
-//     CHECK_THROWS(notebook2.erase(/*page=*/0, /*row=*/3, /*column=*/0, Direction::Vertical, /*length=*/-4));
-
-// }
-
 TEST_CASE("Bad input - message larger than 100 characters") {
     ariel:: Notebook notebook3;
     CHECK_THROWS(notebook3.write(/*page=*/100, /*row=*/100, /*column=*/50, Direction::Vertical, "I am just writing meaningless words until I get to over 100 characters because that is an issue and should be dealt with"));
@@ -56,7 +42,7 @@ TEST_CASE("Bad input - writing on line already written"){
     CHECK_THROWS(notebook4.write(10,0,1,Direction::Vertical, "Trying to write on something already written"));
     notebook4.write(11,1,0, Direction::Horizontal, "Something is written here! Get out!");
     CHECK_THROWS(notebook4.write(11,1,0,Direction::Horizontal, "Trying to write on something already written"));
-    notebook4.write(1,0,0, Direction:: Vertical, "Secret message written here")
+    notebook4.write(1,0,0, Direction:: Vertical, "Secret message written here");
     CHECK_THROWS(notebook4.write(1,0,4,Direction::Horizontal, "Trying to write on something already written"));    
 }
 
@@ -65,7 +51,7 @@ TEST_CASE("Bad input - writing on erased line"){
     CHECK_THROWS(notebook4.write(10,0,0, Direction::Vertical, "Something was erased here! Get out!"));
     notebook4.erase(11, 1, 0, Direction::Horizontal, 35);
     CHECK_THROWS(notebook4.write(11,1,0, Direction::Horizontal, "Something was erased here! Get out!"));
-    notebook4.erase(0, 0, 0, Direction::Hortizontal, 3);
+    notebook4.erase(0, 0, 0, Direction::Horizontal, 3);
     CHECK_THROWS(notebook4.write(0,0,1, Direction::Horizontal, "Something was erased here! Get out!"));  
     notebook4.write(7,0,1,Direction::Vertical, "bbb");
     notebook4.erase(7,0,2,Direction::Vertical, 10);
