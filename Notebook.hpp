@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 #include "Direction.hpp"
 using namespace std;
 using ariel::Direction;
@@ -6,6 +7,7 @@ using ariel::Direction;
 
 namespace ariel{
     class Notebook {
+        unordered_map<int, unordered_map<int, int[100]> > pages;
         public:
             Notebook();
             void write(int page, int row, int col, ariel::Direction dir, string msg);
